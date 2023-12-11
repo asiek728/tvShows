@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useShow } from "../contexts"
+import { useShow, useStatus } from "../contexts"
 
 const SearchForm = () => {
     const { setShowData } = useShow()
     const [inputValue, setInputValue] = useState("")
     const [searchString, setSearchString] = useState("")
+    const { setStatus } = useStatus()
 
     useEffect(() => {
         const searchAPI = async () => {
@@ -28,11 +29,22 @@ const SearchForm = () => {
         setInputValue("")
     }
 
+    function handleStatus(e) {
+        setStatus(e.target.value)
+    }
+
     return (
         <>
             <form onSubmit={handleSubmit}>
                 <input type="text" value={inputValue} onChange={handleInput} required />
                 <input type="submit" value="Search" />
+                <div className="select">
+                    <select onChange={handleStatus} name="showData" className="filterShows">
+                        <option value="all">Choose sorting type</option>
+                        <option value="increase">Rating increasing</option>
+                        <option value="decrease">Rating decreasing</option>
+                    </select>
+                </div>
             </form>
         </>
     )

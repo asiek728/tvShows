@@ -1,15 +1,17 @@
 import React from 'react'
 import { ShowList, SearchForm } from "../"
-import { RatingFilterProvider } from "../contexts"
+import { RatingFilterProvider, StatusProvider } from "../contexts"
 
 const SearchWidget = () => {
 
     return (
         <>
-            <SearchForm />
-            <RatingFilterProvider>
-                <ShowList />
-            </RatingFilterProvider>
+            <StatusProvider>
+                <SearchForm />
+                <RatingFilterProvider>
+                    <ShowList />
+                </RatingFilterProvider>
+            </StatusProvider>
         </>
     )
 }

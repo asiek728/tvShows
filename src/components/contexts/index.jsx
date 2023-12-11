@@ -16,6 +16,9 @@ export const RatingFilterProvider = ({ children }) => {
 export const useRatingFilter = () => useContext(RatingFilterContext)
 
 
+
+
+
 const ShowContext = createContext()
 
 export const ShowProvider = ({ children }) => {
@@ -29,3 +32,25 @@ export const ShowProvider = ({ children }) => {
 };
 
 export const useShow = () => useContext(ShowContext)
+
+
+
+
+const StatusContext = createContext()
+
+export const StatusProvider = ({ children }) => {
+  const [status, setStatus] = useState("")
+
+  return (
+    <StatusContext.Provider value={{ status, setStatus }}>
+      {children}
+    </StatusContext.Provider>
+  );
+};
+
+export const useStatus = () => useContext(StatusContext)
+
+
+
+
+

@@ -1,22 +1,29 @@
 import React, { useEffect } from 'react';
 import { ShowCard } from "../"
-import { useRatingFilter } from '../contexts'
-import { useShow } from "../contexts"
+import { useShow, useStatus, useRatingFilter } from "../contexts"
 
+//status increase albo decrease
 const ShowList = () => {
-    const { showData } = useShow()
-
+    const { showData } = useShow();
     const { filteredShows, setFilteredShows } = useRatingFilter();
+    const { status } = useStatus();
 
     useEffect(() => {
         filterHandler()
-    }, [showData] )
+    }, [showData, status])
 
     function filterHandler() {
-        //ascending
-        setFilteredShows(showData.sort((a, b) => parseInt(a.rating.average) - parseInt(b.rating.average)));
-        //descending
-        // setFilteredShows(showData.sort((a, b) => parseInt(b.rating.average) - parseInt(a.rating.average)));   
+        if (status === 'decrease') {
+            //ascending
+            setFilteredShows(showData.sort((a, b) => (a.rating.average) - (b.rating.average)));
+        }
+        else if (status === 'increase') {
+            //descending
+            setFilteredShows(showData.sort((a, b) => (b.rating.average) - (a.rating.average)));
+        }
+        else {
+            setFilteredShows(showData)
+        }
     }
     return (
         <>
