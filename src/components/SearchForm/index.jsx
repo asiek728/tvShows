@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useShow } from "../contexts"
 
-const SearchForm = ({ setShowData }) => {
+const SearchForm = () => {
+    const { setShowData } = useShow()
     const [inputValue, setInputValue] = useState("")
     const [searchString, setSearchString] = useState("")
 

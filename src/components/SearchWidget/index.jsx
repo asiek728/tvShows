@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ShowList, SearchForm } from "../"
+import { RatingFilterProvider } from "../contexts"
 
 const SearchWidget = () => {
 
-    const [showData, setShowData] = useState([])
-
     return (
         <>
-            <SearchForm setShowData={setShowData}/>
-            <ShowList showData={showData}/>
+            <SearchForm />
+            <RatingFilterProvider>
+                <ShowList />
+            </RatingFilterProvider>
         </>
     )
 }

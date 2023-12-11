@@ -1,10 +1,13 @@
 import React from 'react'
-import {SearchWidget} from "../../components"
+import { SearchWidget } from "../../components"
+import { ShowProvider } from "../../components/contexts"
 
 
 const SearchPage = () => {
   return (
-    <SearchWidget />
+    <ShowProvider>
+      <SearchWidget />
+    </ShowProvider>
   )
 }
 
